@@ -33,6 +33,8 @@ def get_weather(url,area_name = '東京都中央区',today = False):
     
     message = f'{area_name}の天気:{weather}\n {high_temp}度,{low_temp}度,降水確率:{rain_info}'
     
+    print(message)
+
     return  message
     
 
