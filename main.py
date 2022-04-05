@@ -1,20 +1,9 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[29]:
-
-
 import requests
 from bs4 import BeautifulSoup
 import datetime
 import locale
 
 locale.setlocale(locale.LC_TIME, 'ja_JP.UTF-8')
-
-# In[107]:
-
-
-#天気を取得
 def get_weather(url,area_name = '東京都中央区',today = False):
     
     r = requests.get(url)
@@ -37,27 +26,16 @@ def get_weather(url,area_name = '東京都中央区',today = False):
 
     return  message
     
-
-
-# In[108]:
-
-
+# 事前にURLは調べておく
 kuri = get_weather('https://tenki.jp/forecast/3/16/4410/13102/',area_name = '東京都中央区')
 yusuke = get_weather('https://tenki.jp/forecast/3/17/4610/14109/',area_name = '日吉')
 dt_tom = (datetime.datetime.now()+ datetime.timedelta(days = 1)).strftime('%m月%d日(%a)')
-
-
-# In[109]:
 
 
 import yaml
 with open('/Users/shibuya/myGithub/Weather/config.yaml') as file:
     obj = yaml.safe_load(file)
     TOKEN = obj['TOKEN']
-
-
-# In[110]:
-
 
 
 #APIのURL
@@ -69,13 +47,8 @@ TOKEN_dic = {'Authorization': 'Bearer' + ' ' + TOKEN}
 send_dic = {'message': send_contents}
 
 
-# In[106]:
-
-
 requests.post(api_url, headers=TOKEN_dic, data=send_dic)
 
-
-# In[ ]:
 
 
 
